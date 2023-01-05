@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import { Typography} from 'antd';
-
+import { CalculatorOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph, Text, Link } = Typography;
 const blockContent = `Designed by Green Light, Industry 4.0`;
@@ -9,7 +9,7 @@ const blockContent = `Designed by Green Light, Industry 4.0`;
 const Introd: React.FC = () => (
   <Typography>
 
-    <Title>Greenhouse Gas Equivalencies Calculator</Title>
+    <Title><CalculatorOutlined /> Greenhouse Gas Equivalencies Calculator</Title>
     <Paragraph>
     Convert emissions or energy data into concrete terms you can understand — such as the annual CO2 emissions of cars, households, and power plants.
     </Paragraph>

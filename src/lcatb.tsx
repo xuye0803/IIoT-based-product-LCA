@@ -5,14 +5,11 @@ import qs from 'qs';
 
 interface DataType {
   activity: string;
-  product: string;
-  geography: string;
   amount: number;
-  unit: string;
   IPCC: number;
   ReCiPe: number;
-  custom_name: string;
-  index:number;
+  level: string;
+  index: number;
 }
 
 interface TableParams {
@@ -21,31 +18,12 @@ interface TableParams {
 
 const columns: ColumnsType<DataType> = [
   {
-    title: 'Custom Name',
-    dataIndex: 'custom_name',
-    width: '20%',
-  },
-  {
     title: 'Activity Name',
     dataIndex: 'activity',
-    width: '20%',
-  },
-  {
-    title: 'Reference product',
-    dataIndex: 'product',
-    width: '15%',
-  },
-  {
-    title: 'Geography',
-    dataIndex: 'geography',
   },
   {
     title: 'Amount',
     dataIndex: 'amount',
-  },
-  {
-    title: 'Unit',
-    dataIndex: 'unit',
   },
   {
     title: 'IPCC(kg CO2-Eq)',
@@ -54,6 +32,10 @@ const columns: ColumnsType<DataType> = [
   {
     title: 'ReCiPe Midpoint(kg CO2-Eq)',
     dataIndex: 'ReCiPe',
+  },
+  {
+    title: 'Level',
+    dataIndex: 'level',
   }
 ];
 
@@ -62,7 +44,7 @@ const getRandomuserParams = (params: TableParams) => ({
   page: params.pagination?.current
 });
 
-const Tables: React.FC = () => {
+const LCATable: React.FC = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [tableParams, setTableParams] = useState<TableParams>({
@@ -74,7 +56,7 @@ const Tables: React.FC = () => {
 
   const fetchData = () => {
     setLoading(true);
-    fetch(`http://127.0.0.1:8000/table/?${qs.stringify(getRandomuserParams(tableParams))}`)
+    fetch(`http://127.0.0.1:8000/lca_table/?${qs.stringify(getRandomuserParams(tableParams))}`)
       .then((res) => res.json())
       .then(({ results }) => {
         setData(results);
@@ -115,4 +97,4 @@ const Tables: React.FC = () => {
   );
 };
 
-export default Tables;
+export default LCATable;

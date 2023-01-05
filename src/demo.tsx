@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Select, InputNumber, Button, message, Space } from 'antd';
+import React, { useState, useEffect} from 'react';
+import { Select, InputNumber, Button, message, Space, Input,Tooltip } from 'antd';
 import jsonp from 'fetch-jsonp';
 import qs from 'qs';
 import type { SelectProps, } from 'antd';
 import axios from 'axios';
+import {CalculatorOutlined, ConsoleSqlOutlined, InfoCircleOutlined ,ContainerOutlined } from '@ant-design/icons';
+const { Search } = Input;
 
 let timeout: ReturnType<typeof setTimeout> | null;
 let currentValue: string;
@@ -13,6 +15,7 @@ let sectors: string;
 let product: string;
 let unit: number;
 let pro_unit: string;
+let customnames: string;
 
 
 const fetch2 = (value: string, callback: Function) => {
@@ -70,6 +73,7 @@ const SearchInput2: React.FC<{ placeholder: string; style: React.CSSProperties }
     <Select
       showSearch
       value={value}
+      allowClear
       placeholder={props.placeholder}
       style={props.style}
       defaultActiveFirstOption={false}
@@ -118,6 +122,7 @@ const Location = () => {
   return (
     <Select
       showSearch
+      allowClear
       placeholder="Select a geography"
       optionFilterProp="children"
       onChange={onChange}
@@ -146,7 +151,7 @@ const InputNum: React.FC = () => {
       })
   };
 
-  return (<InputNumber defaultValue={1} onChange={onChange} style={{ width: 240 }} addonAfter={anum} />)
+  return (<InputNumber defaultValue={1} allowClear onChange={onChange} style={{ width: 240 }} addonAfter={anum} />)
 }
 
 
@@ -158,7 +163,7 @@ export default function AXX() {
   const [messageApi, contextHolder] = message.useMessage();
 
   const handleClick = () => {
-    axios.get(`http://127.0.0.1:8000/append/?act_name=${activity}&product=${product}&amt=${unit}&geo=${location}&unit=${pro_unit}`)
+    axios.get(`http://127.0.0.1:8000/append/?act_name=${activity}&product=${product}&amt=${unit}&geo=${location}&unit=${pro_unit}&customname=${customnames}`)
       .then(function (response) {
         window.location.href = 'http://localhost:3000/';
         messageApi.open({
@@ -189,13 +194,13 @@ export default function AXX() {
     <>
       <form onSubmit={e => handleSubmit(e)}>
         <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-          Calculate
+        <CalculatorOutlined />Calculate
         </Button>
         <p style={{ whiteSpace: "pre-wrap" }}>{text}</p>
       </form>
       {contextHolder}
       <Space>
-        <Button onClick={handleClick}>Add to database</Button>
+        <Button onClick={handleClick}><ConsoleSqlOutlined />Add to database</Button>
       </Space>
     </>
   );
@@ -231,6 +236,7 @@ const Sector = () => {
   return (
     <Select
       showSearch
+      allowClear
       placeholder="Select a sector"
       optionFilterProp="children"
       onChange={onChange}
@@ -255,6 +261,7 @@ const Refer = () => {
     asyncFetch();
   }, []);
 
+
   const asyncFetch = () => {
     fetch(`http://127.0.0.1:8000/reference_product_list/?key_word=${activity}&sector=${sectors}`)
       .then((response) => response.json())
@@ -276,6 +283,7 @@ const Refer = () => {
   return (
     <Select
       showSearch
+      allowClear
       placeholder="Select a product"
       optionFilterProp="children"
       onChange={onChange}
@@ -295,7 +303,37 @@ const Refer = () => {
 
 
 
-export { Location, Activity, InputNum, AXX, Sector, Refer };
+
+
+const Customname: React.FC = () => {
+  const [text, setDisplayText] = useState('');
+
+  const onSearch = (value: string) => {
+    console.log(value);
+    customnames = encodeURIComponent(value)
+    setDisplayText("Enter successfully! √")
+  }
+
+  return (<><Space>
+    <Search
+      placeholder="Enter your custom name"
+      onSearch={onSearch}
+      allowClear
+      enterButton="Confirm"
+      style={{ width: 500 }}
+      prefix={<ContainerOutlined className="site-form-item-icon" />}
+      suffix={
+        <Tooltip title="Please enter your custom name for the activity, which is the original name of the activity in industrial production.">
+          <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+        </Tooltip>
+      }
+    />{text}
+    </Space>
+  </>)
+}
+
+
+export { Location, Activity, InputNum, AXX, Sector, Refer, Customname};
 
 // 其他也可用的代码-xuye
 // class Train extends Component {

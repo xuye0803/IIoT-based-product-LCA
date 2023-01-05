@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.css';
 import { Breadcrumb, Layout, Menu, theme, Card, Space } from 'antd';
-import Tables from './table.tsx';
-import Forms from './Form';
+import Tablecard from './tablecard';
+import { CalculatorOutlined } from '@ant-design/icons';
 import Introd from './intro.tsx';
 import logo from './greenlight_logo.png';
-import DemoColumn from './barchart';
 import Tabcard from './tabcard';
+import { Drawform, Calculate } from './drawerform';
 
 
 
@@ -33,38 +33,35 @@ const Lay: React.FC = () => {
                 <Menu
                     theme="dark"
                     mode="horizontal"
-                    defaultSelectedKeys={['1']}
-                    items={new Array(2).fill(null).map((_, index) => ({
-                        key: String(index + 1),
-                        label: `Map ${index + 1}`,
-                    }))}
+                    items={
+                        [{
+                            key: "calculate",
+                            label: "Greenhouse Gas Equivalencies Calculator",
+                            icon: <CalculatorOutlined />
+                        }]
+                    }
                 />
             </Header>
             <Content className="site-layout" style={{ padding: '0 50px' }}>
                 <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>Calculator</Breadcrumb.Item>
-                    <Breadcrumb.Item>Map1</Breadcrumb.Item>
+                    <Breadcrumb.Item>Greenlight</Breadcrumb.Item>
+                    <Breadcrumb.Item>Greenhouse Gas Equivalencies Calculator</Breadcrumb.Item>
                 </Breadcrumb>
                 <div style={{ padding: 25, minHeight: 300, background: colorBgContainer }}>
                     <Introd />
                     <Card title="Enter and convert data">
                         <Card type="inner" title="Greenhouse Gas Equivalencies Calculator" >
-                            
-                                <Forms />
-                           
-                        </Card>
-                        <Card style={{ marginTop: 16 }} type="inner" title="View results" >
-                            <Tables />
+                            <Space size={30}>
+                                <Calculate /><Drawform />
+                            </Space>
+                            <br />
+                            <br />
+                            <Tablecard />
                         </Card>
                     </Card>
-                    <br />
-                    <br />
                     <Card title="Dashboard of carbon emissions results">
                         <Space direction="vertical" style={{ display: 'flex' }}>
-                            <Card type="inner" title="Bar chart of grouped carbon emission results" >
-                                <DemoColumn />
-                            </Card>
-                            <Tabcard />                           
+                            <Tabcard />
                         </Space>
                     </Card>
                 </div>

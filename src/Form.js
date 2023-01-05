@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Space, Row, Tooltip} from 'antd';
-import { Location, Activity, InputNum, AXX, Sector, Refer } from './demo.tsx';
+import { Location, Activity, InputNum, AXX, Sector, Refer, Customname } from './demo.tsx';
 import { QuestionCircleFilled } from '@ant-design/icons';
 import Draw from './draw';
 
@@ -12,8 +12,8 @@ const Forms: React.FC = () => {
 
     <Form
       name="basic"
-      labelCol={{ span: 7 }}
-      wrapperCol={{ span: 15 }}
+      labelCol={{ span: 4 }}
+      wrapperCol={{ span: 6 }}
       initialValues={{ remember: true }}
       autoComplete="off"
     >
@@ -46,6 +46,14 @@ const Forms: React.FC = () => {
               <QuestionCircleFilled />
             </Tooltip>
           </Space>
+        </Form.Item>
+
+        <Form.Item
+          label="Custom Name"
+          name="custom name"
+          rules={[{ required: true }]}
+        >
+            <Customname />
         </Form.Item>
 
         <Form.Item

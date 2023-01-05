@@ -1,39 +1,28 @@
 import React, { useState } from 'react';
 import './index.css';
 import { Card } from 'antd';
-import { Pie1, Pie2 } from './piechart';
-import DemoColumn from './barchart';
-import DemoDecompositionTreeGraph from './lcadiagram';
+import Tables from './table.tsx';
+import LCATable from './lcatb.tsx';
 
 const tabList = [
   {
     key: 'tab1',
-    tab: 'Bar chart of grouped carbon emission results',
+    tab: 'Table of sub-level activities calculated from Ecoinvent',
   },
   {
     key: 'tab2',
-    tab: 'Pie chart of IPCC 2013, GWP 100a',
-  },
-  {
-    key: 'tab3',
-    tab: 'Pie chart of ReCiPe Midpoint (H), GWP 100a',
-  },
-  {
-    key: 'tab4',
-    tab: 'Carbon emissions LCA decomposition tree graph ',
+    tab: 'Tables of parent activities calculated from sub-level activities',
   },
 ];
 
 const contentList: Record<string, React.ReactNode> = {
-  tab1: <DemoColumn />,
-  tab2: <Pie1 />,
-  tab3: <Pie2 />,
-  tab4: <DemoDecompositionTreeGraph />,
+  tab1: <Tables/>,
+  tab2: <LCATable/>,
 };
 
 
 
-const Tabcard: React.FC = () => {
+const Tablecard: React.FC = () => {
   const [activeTabKey1, setActiveTabKey1] = useState('tab1');
   
 
@@ -46,7 +35,7 @@ const Tabcard: React.FC = () => {
     <>
       <Card
         style={{ width: '100%' }}
-        title="charts of carbon emission results"
+        title="Tables of GHG emission calculations"
         tabList={tabList}
         activeTabKey={activeTabKey1}
         onTabChange={(key) => {
@@ -59,4 +48,4 @@ const Tabcard: React.FC = () => {
   );
 };
 
-export default Tabcard;
+export default Tablecard;
