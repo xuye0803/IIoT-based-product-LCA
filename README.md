@@ -11,6 +11,13 @@ The detailed introduction and design process can be found in the document: [Fron
 ![image](https://user-images.githubusercontent.com/122013474/210929413-4a1bb7ca-a09b-4035-9c13-0f3d7d86261d.png)
 ![image](https://user-images.githubusercontent.com/122013474/210929447-db6e9406-3688-494d-9f3e-5aef07273836.png)
 
+
+https://user-images.githubusercontent.com/122013474/211204520-89b0f3f3-70a7-4caf-9c0a-17f834db8b82.mp4
+
+
+https://user-images.githubusercontent.com/122013474/211204541-9df7637d-9557-40ac-8c94-85343ee7a8ff.mp4
+
+
 ## Available Scripts
 
 In the project directory, you can run:
