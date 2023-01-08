@@ -15,7 +15,11 @@ The detailed introduction and design process can be found in the document: [Fron
 ## Demonstration videos
 https://user-images.githubusercontent.com/122013474/211204520-89b0f3f3-70a7-4caf-9c0a-17f834db8b82.mp4
 
+https://user-images.githubusercontent.com/122013474/211214015-426003d0-d397-47a5-b32a-ee9366ca5126.mp4
+
 https://user-images.githubusercontent.com/122013474/211204541-9df7637d-9557-40ac-8c94-85343ee7a8ff.mp4
+
+https://user-images.githubusercontent.com/122013474/211214017-e0ca18f7-d382-4eae-995e-2f1d6f849590.mp4
 
 
 ## Available Scripts
