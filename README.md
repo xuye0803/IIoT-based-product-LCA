@@ -36,8 +36,11 @@ You may also see any lint errors in the console.
 
 ### `npm install`
 
-Download all the react modules.\
-Please install the rest of the component libraries yourself.\
-For example, the installation command of antd is `npm install antd --save`.
+Installs a package and any packages that it depends on.
+
+### `npm install ??? --save `
+Installs the rest of the component libraries yourself.\
+For "*antd*" is `npm install antd --save`.\
+For "*axios*" is `npm install axios --save`.
 
 
